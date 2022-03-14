@@ -53,15 +53,13 @@ router.get("/toggleDone/:id", async (req, res) => {
   try {
     const {id} = req.params;
 
-    const task = Task.findById(id)
+    const task = await Task.findById(id)
 
-    const doneSuccess = task.done = !task.done;
+    task.done = !task.done;
 
-    if(doneSuccess) {
-      res.redirect("/");
-    } else {
-      res.send("Error");
-    }
+    task.save()
+
+    res.redirect("/")
 
   } catch (error) {
     console.log("Error: ", error)
