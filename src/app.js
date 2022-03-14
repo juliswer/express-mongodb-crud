@@ -8,6 +8,7 @@ const app = express();
 
 // Middlewares
 app.use(morgan("dev"));
+app.use(express.urlencoded({ extended: false }));
 
 // View Engine
 app.set("views", path.join(__dirname, "views"));
