@@ -33,6 +33,10 @@ router.delete("/:id/task/delete", async (req, res) => {
   }
 });
 
+router.get('/edit', async (req, res) => {
+  res.render('edit')
+})
+
 router.get("/:id/edit", async (req, res) => {
   const { id } = req.params;
   const data = await Task.findById(id);
