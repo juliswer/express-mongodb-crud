@@ -25,3 +25,22 @@ export const deleteTask = async (req, res) => {
     console.log("Error: " + error.message);
   }
 };
+
+export const editTask = async (req, res) => {
+  try {
+    const task = await Task.findById(req.params.id).lean();
+    res.render("edit", { task });
+  } catch (error) {
+    console.log("Error: " + error.message);
+  }
+};
+
+export const editTaskPost = async (req, res) => {
+  try {
+    const { id } = req.params;
+    await Task.findByIdAndUpdate(id, req.body);
+    res.redirect("/");
+  } catch (error) {
+    console.log(error);
+  }
+};
