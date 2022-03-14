@@ -49,4 +49,23 @@ router.post("/edit/:id", async (req, res) => {
   }
 });
 
+router.get("/toggleDone/:id", async (req, res) => {
+  try {
+    const {id} = req.params;
+
+    const task = Task.findById(id)
+
+    const doneSuccess = task.done = !task.done;
+
+    if(doneSuccess) {
+      res.redirect("/");
+    } else {
+      res.send("Error");
+    }
+
+  } catch (error) {
+    console.log("Error: ", error)
+  }
+})
+
 export default router;
