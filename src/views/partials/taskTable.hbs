@@ -1,4 +1,8 @@
-<table class="table table-bordered table-hover table-dark">
+
+
+    {{#each tasks}}
+
+    <table class="table table-bordered table-hover table-dark">
   <thead>
     <tr>
       <th>N</th>
@@ -9,22 +13,28 @@
   </thead>
   <tbody>
 
-    {{#each tasks}}
-
       <tr>
         <td>{{@index}}</td>
         <td>{{title}}</td>
         <td>{{description}}</td>
         <td>
           {{#if done}}
-            <a href="/toggleDone/{{_id}}" class="btn btn-danger">Undone</a>
+            <a href="/toggleDone/{{_id}}" class="btn btn-info">Undone</a>
           {{else}}
             <a href="/toggleDone/{{_id}}" class="btn btn-success">Done</a>
           {{/if}}
-          <a href="/delete/{{_id}}">Delete</a>
-          <a href="/edit/{{_id}}">Update</a>
+          <a href="/delete/{{_id}}" class="btn btn-danger">Delete</a>
+          <a href="/edit/{{_id}}" class="btn btn-warning">Update</a>
         </td>
       </tr>
+
+      {{else}}
+
+      <div class="text-center text-white">
+        <h1>No Tasks yet 😭</h1>
+        <h3> ⬅️ You can create one right at my left 🤙</h3>
+        <img src="" alt="">
+      </div>
 
     {{/each}}
   </tbody>
