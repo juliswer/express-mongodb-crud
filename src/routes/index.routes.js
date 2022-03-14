@@ -18,10 +18,6 @@ router.post("/tasks/add", async (req, res) => {
   }
 });
 
-router.get("/about", (req, res) => {
-  res.render("about");
-});
-
 router.delete("/:id/task/delete", async (req, res) => {
   try {
     const { id } = req.params;
@@ -43,9 +39,14 @@ router.get("/edit/:id", async (req, res) => {
 });
 
 router.post("/edit/:id", async (req, res) => {
-  console.log(req.body);
 
-  res.send("received");
+  try {
+    const { id } = req.params;
+    await Task.findByIdAndUpdate(id, req.body)
+    res.redirect("/");
+  } catch (error) {
+    console.log(error)
+  }
 });
 
 export default router;
