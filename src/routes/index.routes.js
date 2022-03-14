@@ -5,13 +5,17 @@ const router = Router();
 
 router.get("/", async (req, res) => {
   const tasks = await Task.find().lean();
-  res.render("index", {tasks: tasks});
+  res.render("index", { tasks: tasks });
 });
 
 router.post("/tasks/add", async (req, res) => {
-  const task = Task(req.body);
-  await task.save();
-  res.redirect("/");
+  try {
+    const task = Task(req.body);
+    await task.save();
+    res.redirect("/");
+  } catch (error) {
+    res.send(error)
+  }
 });
 
 router.get("/about", (req, res) => {
