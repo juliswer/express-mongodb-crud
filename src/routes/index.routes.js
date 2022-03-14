@@ -14,7 +14,7 @@ router.post("/tasks/add", async (req, res) => {
     await task.save();
     res.redirect("/");
   } catch (error) {
-    res.send(error)
+    res.send(error);
   }
 });
 
@@ -33,16 +33,15 @@ router.delete("/:id/task/delete", async (req, res) => {
   }
 });
 
-router.get('/edit', async (req, res) => {
-  res.render('edit')
-})
-
-router.get("/:id/edit", async (req, res) => {
-  const { id } = req.params;
-  const data = await Task.findById(id);
-  console.log(data);
-
+router.get("/edit", async (req, res) => {
   res.render("edit");
+});
+
+router.post("/edit", async (req, res) => {
+
+  console.log(req.body)
+
+  res.send('received')
 });
 
 export default router;
