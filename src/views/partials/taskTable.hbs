@@ -1,4 +1,4 @@
-<table class="table table-bordered">
+<table class="table table-bordered table-hover table-dark">
   <thead>
     <tr>
       <th>N</th>
@@ -17,9 +17,9 @@
         <td>{{description}}</td>
         <td>
           {{#if done}}
-            <a href="/toggleDone/{{_id}}">Undone</a>
+            <a href="/toggleDone/{{_id}}" class="btn btn-danger">Undone</a>
           {{else}}
-            <a href="/toggleDone/{{_id}}">Done</a>
+            <a href="/toggleDone/{{_id}}" class="btn btn-success">Done</a>
           {{/if}}
           <a href="/delete/{{_id}}">Delete</a>
           <a href="/edit/{{_id}}">Update</a>
