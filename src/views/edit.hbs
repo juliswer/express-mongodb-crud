@@ -1,6 +1,15 @@
 <form action="/edit" method="POST">
-    <input type="text" name="title" placeholder="Update your Title">
-    <textarea name="description" placeholder="Update your Description" rows="3"></textarea>
+  <input
+    type="text"
+    name="title"
+    placeholder="Update your Title"
+    value="{{task.title}}"
+  />
+  <textarea
+    name="description"
+    placeholder="Update your Description"
+    rows="3"
+  >{{task.description}}</textarea>
 
-    <button>Update</button>
+  <button>Update</button>
 </form>

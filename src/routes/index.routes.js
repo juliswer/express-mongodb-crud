@@ -33,15 +33,19 @@ router.delete("/:id/task/delete", async (req, res) => {
   }
 });
 
-router.get("/edit", async (req, res) => {
-  res.render("edit");
+router.get("/edit/:id", async (req, res) => {
+  try {
+    const task = await Task.findById(req.params.id).lean();
+    res.render("edit", { task });
+  } catch (error) {
+    console.log("Error: " + error.message);
+  }
 });
 
-router.post("/edit", async (req, res) => {
+router.post("/edit/:id", async (req, res) => {
+  console.log(req.body);
 
-  console.log(req.body)
-
-  res.send('received')
+  res.send("received");
 });
 
 export default router;
