@@ -18,7 +18,7 @@ router.get("/about", (req, res) => {
   res.render("about");
 });
 
-router.get("/:id/task/delete", async (req, res) => {
+router.delete("/:id/task/delete", async (req, res) => {
   try {
     const { id } = req.params;
     Task.findByIdAndDelete(id);
