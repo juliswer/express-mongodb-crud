@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { renderTask, postTask} from "../controllers/tasks.controller";
+import { renderTask, postTask, deleteTask} from "../controllers/tasks.controller";
 
 const router = Router();
 
@@ -7,16 +7,7 @@ router.get("/", renderTask);
 
 router.post("/tasks/add", postTask);
 
-router.get("/delete/:id", async (req, res) => {
-  try {
-    const { id } = req.params;
-    await Task.findByIdAndDelete(id);
-
-    res.redirect("/");
-  } catch (error) {
-    console.log("Error: " + error.message);
-  }
-});
+router.get("/delete/:id", deleteTask);
 
 router.get("/edit/:id", async (req, res) => {
   try {

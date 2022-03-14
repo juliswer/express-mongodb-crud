@@ -14,3 +14,14 @@ export const postTask = async (req, res) => {
     res.send(error);
   }
 };
+
+export const deleteTask = async (req, res) => {
+  try {
+    const { id } = req.params;
+    await Task.findByIdAndDelete(id);
+
+    res.redirect("/");
+  } catch (error) {
+    console.log("Error: " + error.message);
+  }
+};
