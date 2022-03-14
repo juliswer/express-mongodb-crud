@@ -5,6 +5,7 @@ import {
   deleteTask,
   editTask,
   editTaskPost,
+  toggleDone
 } from "../controllers/tasks.controller";
 
 const router = Router();
@@ -19,20 +20,6 @@ router.get("/edit/:id", editTask);
 
 router.post("/edit/:id", editTaskPost);
 
-router.get("/toggleDone/:id", async (req, res) => {
-  try {
-    const { id } = req.params;
-
-    const task = await Task.findById(id);
-
-    task.done = !task.done;
-
-    task.save();
-
-    res.redirect("/");
-  } catch (error) {
-    console.log("Error: ", error);
-  }
-});
+router.get("/toggleDone/:id", toggleDone);
 
 export default router;

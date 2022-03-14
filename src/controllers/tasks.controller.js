@@ -44,3 +44,19 @@ export const editTaskPost = async (req, res) => {
     console.log(error);
   }
 };
+
+export const toggleDone = async (req, res) => {
+  try {
+    const { id } = req.params;
+
+    const task = await Task.findById(id);
+
+    task.done = !task.done;
+
+    task.save();
+
+    res.redirect("/");
+  } catch (error) {
+    console.log("Error: ", error);
+  }
+};
