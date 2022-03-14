@@ -18,12 +18,12 @@ router.post("/tasks/add", async (req, res) => {
   }
 });
 
-router.delete("/:id/task/delete", async (req, res) => {
+router.get("/delete/:id", async (req, res) => {
   try {
     const { id } = req.params;
-    Task.findByIdAndDelete(id);
+    await Task.findByIdAndDelete(id);
 
-    res.json({ message: "Task deleted successfully" });
+    res.redirect("/");
   } catch (error) {
     console.log("Error: " + error.message);
   }
